@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products | Easywork Enterprise</title>
+    <meta name="description" content="Browse Easywork Enterprise product catalogue for plastic bags, refuse bags, heavy-duty plastics and general material supply." />
+    <link rel="icon" type="image/svg+xml" href="assets/logo/logo.svg" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+  </head>
+  <body data-page="products.html">
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <span>Easywork Enterprise (Pty) Ltd</span>
+        <span>Materials Supply &amp; Delivery</span>
+        <a href="contact.html">Need assistance?</a>
+      </div>
+    </div>
+
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <img src="assets/logo/logo.svg" alt="Easywork Enterprise logo" class="brand-mark" />
+          <div>
+            <strong>Easywork</strong>
+            <span>Enterprise</span>
+          </div>
+        </div>
+
+        <nav class="side-nav" aria-label="Sidebar navigation">
+          <a href="index.html" data-page="index.html">Dashboard</a>
+          <a href="products.html" data-page="products.html">Products</a>
+          <a href="services.html" data-page="services.html">Services</a>
+          <a href="procurement.html" data-page="procurement.html">Procurement</a>
+          <a href="delivery.html" data-page="delivery.html">Deliveries</a>
+          <a href="about.html" data-page="about.html">About</a>
+          <a href="contact.html" data-page="contact.html">Contact</a>
+        </nav>
+
+        <div class="sidebar-support">
+          <p>Need Help?</p>
+          <a class="support-link whatsapp-link" href="#" data-message="Hello Easywork Enterprise, I am interested in your products and delivery options.">WhatsApp</a>
+          <a class="support-link" href="contact.html">Contact</a>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="page-header">
+          <div class="page-header-copy">
+            <p class="eyebrow">CATALOGUE</p>
+            <h1>Products</h1>
+          </div>
+          <div class="header-cta">
+            <a class="btn btn-primary" href="procurement.html">Request a Quote</a>
+          </div>
+        </header>
+
+        <div class="page-content">
+          <section class="content-panel">
+            <div class="catalogue-header">
+              <div>
+                <div class="section-label">PRODUCT CATALOGUE</div>
+                <h2>Plastic products and materials supplied by Easywork Enterprise.</h2>
+              </div>
+              <div class="search-wrap">
+                <label class="sr-only" for="productSearch">Search products</label>
+                <input id="productSearch" type="search" placeholder="Search products..." aria-label="Search products" />
+              </div>
+            </div>
+
+            <div class="category-list" aria-label="Product categories">
+              <button class="category-btn active" data-filter="all" type="button">All</button>
+              <button class="category-btn" data-filter="Plastic Bags" type="button">Plastic Bags</button>
+              <button class="category-btn" data-filter="Refuse Bags" type="button">Refuse Bags</button>
+              <button class="category-btn" data-filter="Heavy Duty" type="button">Heavy Duty</button>
+              <button class="category-btn" data-filter="Plastic Products" type="button">Plastic Products</button>
+              <button class="category-btn" data-filter="General Materials" type="button">General Materials</button>
+            </div>
+          </section>
+
+          <section class="product-layout">
+            <div class="products-grid" id="productGrid">
+              <article class="product-card" data-category="Refuse Bags" data-name="Refuse Bags" data-price="R30.00" data-description="Heavy-duty refuse bags suitable for general waste collection and disposal requirements." data-specs='{"Thickness":"40 Micron","Packaging":"Pack of 20","Price":"R30.00","Category":"Refuse Bags"}' data-status="Available">
+                <div class="product-image">
+                  <img src="assets/images/refusebag.jpg" alt="Refuse bags" />
+                </div>
+                <div class="product-body">
+                  <span class="meta-label">Refuse Bags</span>
+                  <h3>Refuse Bags</h3>
+                  <p>40 Micron</p>
+                  <div class="product-meta-row">
+                    <span class="status-badge success">Available</span>
+                    <strong>on request</strong>
+                  </div>
+                  <p class="small-copy">Pack of 20</p>
+                  <div class="product-actions">
+                    <button class="btn btn-primary btn-small detail-trigger" type="button">Request Quote</button>
+                    <a class="btn btn-whatsapp btn-small whatsapp-link" href="#" data-message="Hello Easywork Enterprise, I am interested in your Refuse Bags. Please provide availability and delivery information. Thank you." data-product="Refuse Bags">WhatsApp</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="product-card" data-category="Plastic Bags" data-name="Plastic Bags" data-price="Price on Request" data-description="Plastic bag supply for everyday commercial and operational requirements." data-specs='{"Category":"Plastic Bags","Supply":"Available on request","Delivery":"Within Mpumalanga and South Africa"}' data-status="Available on request">
+                <div class="product-image">
+                  <img src="assets/images/new-plastics.jpg" alt="" />
+                </div>
+                <div class="product-body">
+                  <span class="meta-label">Plastic Bags</span>
+                  <h3>Plastic Bags</h3>
+                  <p>General supply</p>
+                  <div class="product-meta-row">
+                    <span class="status-badge info">Available on request</span>
+                    <strong>Price on Request</strong>
+                  </div>
+                  <p class="small-copy">Business and supply enquiries</p>
+                  <div class="product-actions">
+                    <button class="btn btn-primary btn-small detail-trigger" type="button">Request Quote</button>
+                    <a class="btn btn-whatsapp btn-small whatsapp-link" href="#" data-message="Hello Easywork Enterprise, I would like to enquire about your Plastic Bags. Please provide availability and delivery information." data-product="Plastic Bags">WhatsApp</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="product-card" data-category="General Materials" data-name="General Materials" data-price="Price on Request" data-description="General material supply for customer and business requirements across South Africa." data-specs='{"Category":"General Materials","Supply":"Available on request","Delivery":"South Africa"}' data-status="Available on request">
+                <div class="product-image">
+                  <img src="assets/images/general1.jpg" alt="Material supply" />
+                </div>
+                <div class="product-body">
+                  <span class="meta-label">General Materials</span>
+                  <h3>General Materials</h3>
+                  <p>Supply and delivery</p>
+                  <div class="product-meta-row">
+                    <span class="status-badge info">Available on request</span>
+                    <strong>Price on Request</strong>
+                  </div>
+                  <p class="small-copy">Based on customer requirements</p>
+                  <div class="product-actions">
+                    <button class="btn btn-primary btn-small detail-trigger" type="button">Request Quote</button>
+                    <a class="btn btn-whatsapp btn-small whatsapp-link" href="#" data-message="Hello Easywork Enterprise, I would like to enquire about your general material supply and delivery options." data-product="General Materials">WhatsApp</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <aside class="product-detail-panel" aria-live="polite">
+              <div class="detail-breadcrumbs">Home / Products / <span id="detailName">Refuse Bags</span></div>
+              <div class="detail-visual">
+                <img id="detailImage" src="assets/images/home-uses.jpg" alt="Refuse bags detail" />
+              </div>
+              <div class="detail-content">
+                <p class="section-label small-label">PRODUCT</p>
+                <h3 id="detailTitle">Refuse Bags</h3>
+                <p class="detail-price" id="detailPrice">Price on Request</p>
+                <div class="status-row">
+                  <span class="status-badge success" id="detailStatus">Available</span>
+                </div>
+                <h4>Specifications</h4>
+                <table class="spec-table">
+                  <tbody id="detailSpecs"></tbody>
+                </table>
+                <h4>Description</h4>
+                <p id="detailDescription">Heavy-duty refuse bags suitable for general waste collection and disposal requirements.</p>
+                <div class="detail-actions">
+                  <button class="btn btn-primary quote-trigger" type="button">Request Quote</button>
+                  <a class="btn btn-whatsapp whatsapp-link" href="#" id="detailWhatsApp" data-message="Hello Easywork Enterprise, I am interested in your Refuse Bags. Please provide availability and delivery information. Thank you.">WhatsApp Enquiry</a>
+                </div>
+              </div>
+            </aside>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <a class="floating-whatsapp" href="#" aria-label="WhatsApp Easywork" data-message="Hello Easywork Enterprise, I would like to enquire about your supply and delivery services.">WhatsApp Easywork</a>
+
+    <script src="js/script.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/forms.js"></script>
+  </body>
+</html>

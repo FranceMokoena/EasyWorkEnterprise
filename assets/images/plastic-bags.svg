@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-labelledby="title desc">
+  <title id="title">Plastic bags</title>
+  <desc id="desc">Illustration of plastic bags and packaging material</desc>
+  <rect width="800" height="560" rx="24" fill="#eef9f4"/>
+  <path d="M150 170h110l16 220H134z" fill="#d8f1e5"/>
+  <path d="M280 170h110l16 220H264z" fill="#bdebd4"/>
+  <path d="M410 170h110l16 220H394z" fill="#d8f1e5"/>
+  <path d="M540 170h110l16 220H524z" fill="#bdebd4"/>
+  <path d="M180 185c0-36 28-60 62-60 34 0 62 24 62 60" fill="none" stroke="#0b6e4f" stroke-width="12" stroke-linecap="round"/>
+  <path d="M310 185c0-36 28-60 62-60 34 0 62 24 62 60" fill="none" stroke="#0b6e4f" stroke-width="12" stroke-linecap="round"/>
+  <path d="M440 185c0-36 28-60 62-60 34 0 62 24 62 60" fill="none" stroke="#0b6e4f" stroke-width="12" stroke-linecap="round"/>
+  <path d="M570 185c0-36 28-60 62-60 34 0 62 24 62 60" fill="none" stroke="#0b6e4f" stroke-width="12" stroke-linecap="round"/>
+  <path d="M150 260h110M280 260h110M410 260h110M540 260h110" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="680" cy="120" r="55" fill="#d8f1e5"/>
+</svg>

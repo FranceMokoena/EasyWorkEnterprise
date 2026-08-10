@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-labelledby="title desc">
+  <title id="title">Refuse bags</title>
+  <desc id="desc">Illustration of refuse bags in a pack</desc>
+  <rect width="800" height="560" rx="24" fill="#edf9f4"/>
+  <path d="M160 150h110l50 220H110z" fill="#d9f1e7"/>
+  <path d="M340 150h110l50 220H290z" fill="#c2eed8"/>
+  <path d="M520 150h110l50 220H470z" fill="#d9f1e7"/>
+  <path d="M188 170c0-42 34-74 76-74 42 0 76 32 76 74" fill="none" stroke="#0b6e4f" stroke-width="12" stroke-linecap="round"/>
+  <path d="M368 170c0-42 34-74 76-74 42 0 76 32 76 74" fill="none" stroke="#0b6e4f" stroke-width="12" stroke-linecap="round"/>
+  <path d="M548 170c0-42 34-74 76-74 42 0 76 32 76 74" fill="none" stroke="#0b6e4f" stroke-width="12" stroke-linecap="round"/>
+  <path d="M175 238h104M355 238h104M535 238h104" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+  <path d="M130 470h570" stroke="#d4e7dc" stroke-width="18" stroke-linecap="round"/>
+</svg>

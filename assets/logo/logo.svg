@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Easywork Enterprise logo</title>
+  <desc id="desc">A clean abstract icon with a bag and a check mark.</desc>
+  <defs>
+    <linearGradient id="g1" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#0b6e4f"/>
+      <stop offset="100%" stop-color="#20b36b"/>
+    </linearGradient>
+  </defs>
+  <rect width="160" height="160" rx="28" fill="#f6fbf8"/>
+  <path d="M45 59h70l-6 58H51l-6-58Z" fill="url(#g1)" opacity="0.95"/>
+  <path d="M60 56c0-15 8-26 20-26s20 11 20 26" fill="none" stroke="#0b6e4f" stroke-width="10" stroke-linecap="round"/>
+  <path d="M66 90l13 14 24-28" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

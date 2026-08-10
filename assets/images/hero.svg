@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img" aria-labelledby="title desc">
+  <title id="title">Supply and delivery illustration</title>
+  <desc id="desc">A stylized scene showing logistics and supply materials</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#eafaf3"/>
+      <stop offset="100%" stop-color="#dff3ff"/>
+    </linearGradient>
+    <linearGradient id="truck" x1="0%" x2="100%" y1="0%" y2="0%">
+      <stop offset="0%" stop-color="#0b6e4f"/>
+      <stop offset="100%" stop-color="#20b36b"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="640" rx="30" fill="url(#bg)"/>
+  <circle cx="760" cy="120" r="58" fill="#dff7ee"/>
+  <path d="M120 430h470l55-185h145v85H620l-36 100H120z" fill="#dfe7ee"/>
+  <path d="M180 215h220l44 92H180z" fill="#d8f1e5"/>
+  <rect x="180" y="300" width="320" height="120" rx="22" fill="url(#truck)"/>
+  <rect x="360" y="330" width="120" height="90" rx="16" fill="#0d5a45" opacity="0.9"/>
+  <circle cx="250" cy="440" r="42" fill="#1d2433"/>
+  <circle cx="250" cy="440" r="18" fill="#f7fbff"/>
+  <circle cx="520" cy="440" r="42" fill="#1d2433"/>
+  <circle cx="520" cy="440" r="18" fill="#f7fbff"/>
+  <path d="M95 170h90l25 30H120z" fill="#20b36b" opacity="0.9"/>
+  <rect x="80" y="200" width="120" height="110" rx="18" fill="#f7fbff"/>
+  <path d="M102 250h76" stroke="#0b6e4f" stroke-width="10" stroke-linecap="round"/>
+  <path d="M102 228h54" stroke="#0b6e4f" stroke-width="10" stroke-linecap="round"/>
+  <path d="M650 165h120l44 60H650z" fill="#dfe7ee"/>
+  <rect x="670" y="215" width="120" height="108" rx="16" fill="#ffffff"/>
+  <path d="M695 290l30-34 26 31" fill="none" stroke="#20b36b" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M680 270h58" stroke="#0b6e4f" stroke-width="8" stroke-linecap="round"/>
+</svg>

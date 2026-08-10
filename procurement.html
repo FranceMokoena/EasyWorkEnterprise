@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Procurement | Easywork Enterprise</title>
+    <meta name="description" content="Submit material requirements to Easywork Enterprise for supply and delivery enquiries." />
+    <link rel="icon" type="image/svg+xml" href="assets/logo/logo.svg" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+  </head>
+  <body data-page="procurement.html">
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <span>Easywork Enterprise (Pty) Ltd</span>
+        <span>Materials Supply &amp; Delivery</span>
+        <a href="contact.html">Need assistance?</a>
+      </div>
+    </div>
+
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <img src="assets/logo/logo.svg" alt="Easywork Enterprise logo" class="brand-mark" />
+          <div>
+            <strong>Easywork</strong>
+            <span>Enterprise</span>
+          </div>
+        </div>
+
+        <nav class="side-nav" aria-label="Sidebar navigation">
+          <a href="index.html" data-page="index.html">Dashboard</a>
+          <a href="products.html" data-page="products.html">Products</a>
+          <a href="services.html" data-page="services.html">Services</a>
+          <a href="procurement.html" data-page="procurement.html">Procurement</a>
+          <a href="delivery.html" data-page="delivery.html">Deliveries</a>
+          <a href="about.html" data-page="about.html">About</a>
+          <a href="contact.html" data-page="contact.html">Contact</a>
+        </nav>
+
+        <div class="sidebar-support">
+          <p>Need Help?</p>
+          <a class="support-link whatsapp-link" href="#" data-message="Hello Easywork Enterprise, I would like to submit a procurement requirement and request a quote.">WhatsApp</a>
+          <a class="support-link" href="contact.html">Contact</a>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="page-header">
+          <div class="page-header-copy">
+            <p class="eyebrow">PROCUREMENT</p>
+            <h1>Material Requirements</h1>
+          </div>
+          <div class="header-cta">
+            <a class="btn btn-whatsapp whatsapp-link" href="#" data-message="Hello Easywork Enterprise, I would like to discuss a procurement requirement.">WhatsApp Us</a>
+          </div>
+        </header>
+
+        <div class="page-content">
+          <section class="content-panel">
+            <div class="section-label">PROCUREMENT REQUEST</div>
+            <div class="procurement-grid">
+              <div>
+                <h2>Customers and businesses can submit material requirements for sourcing and quotation.</h2>
+                <p>Please provide your material requirement details and the Easywork Enterprise team can respond with supply and delivery information.</p>
+                <div class="info-callout">
+                  <strong>Supply areas:</strong>
+                  <span>Mpumalanga, Mbombela / Nelspruit, South Africa</span>
+                </div>
+              </div>
+
+              <form class="enterprise-form" data-form="procurement">
+                <div class="field-row two-up">
+                  <label>
+                    <span>Customer / Company</span>
+                    <input type="text" name="customer" placeholder="Customer or company name" required />
+                  </label>
+                  <label>
+                    <span>Contact Person</span>
+                    <input type="text" name="contactPerson" placeholder="Contact person" required />
+                  </label>
+                </div>
+
+                <div class="field-row two-up">
+                  <label>
+                    <span>Phone</span>
+                    <input type="tel" name="phone" placeholder="Phone number" required />
+                  </label>
+                  <label>
+                    <span>Email</span>
+                    <input type="email" name="email" placeholder="Email address" required />
+                  </label>
+                </div>
+
+                <div class="field-row two-up">
+                  <label>
+                    <span>Material Required</span>
+                    <input type="text" name="material" placeholder="Plastic bags, refuse bags, general materials..." required />
+                  </label>
+                  <label>
+                    <span>Quantity</span>
+                    <input type="text" name="quantity" placeholder="Quantity required" required />
+                  </label>
+                </div>
+
+                <div class="field-row two-up">
+                  <label>
+                    <span>Delivery Location</span>
+                    <input type="text" name="location" placeholder="Delivery location" required />
+                  </label>
+                  <label>
+                    <span>Required Date</span>
+                    <input type="date" name="date" />
+                  </label>
+                </div>
+
+                <label>
+                  <span>Additional Requirements</span>
+                  <textarea name="additional" rows="5" placeholder="Any specific requirements, specifications or delivery details"></textarea>
+                </label>
+
+                <button class="btn btn-primary btn-submit" type="submit">Submit Procurement Request</button>
+                <p class="form-status" aria-live="polite"></p>
+              </form>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <a class="floating-whatsapp" href="#" aria-label="WhatsApp Easywork" data-message="Hello Easywork Enterprise, I would like to submit a procurement request.">WhatsApp Easywork</a>
+
+    <script src="js/script.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/forms.js"></script>
+  </body>
+</html>
