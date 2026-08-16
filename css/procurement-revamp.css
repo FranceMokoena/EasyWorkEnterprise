@@ -1,0 +1,327 @@
+/* =========================================================
+   EASYWORK ENTERPRISE - PROCUREMENT UI REVAMP
+   UI/UX ONLY. Does not change API, backend or form data.
+   ========================================================= */
+
+.procurement-page .content-panel,
+.content-panel:has(.procurement-grid) {
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.procurement-grid {
+  display: grid;
+  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.55fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.procurement-grid > div:first-child {
+  padding: 14px 8px 14px 4px;
+}
+
+.procurement-grid h2 {
+  margin: 0 0 8px;
+  max-width: 500px;
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  line-height: 1.28;
+}
+
+.procurement-grid > div:first-child > p {
+  margin: 0;
+  max-width: 520px;
+  font-size: .78rem;
+  line-height: 1.55;
+}
+
+.procurement-grid .section-label {
+  padding: 5px 9px;
+  margin-bottom: 12px;
+  font-size: .62rem;
+  border-radius: 7px;
+}
+
+.info-callout {
+  margin-top: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  display: grid;
+  gap: 2px;
+  font-size: .68rem;
+}
+
+.info-callout strong {
+  color: var(--primary);
+  font-size: .62rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.info-callout span { color: var(--muted); }
+
+/* Compact, structured form */
+.enterprise-form {
+  padding: 15px;
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(13,41,32,.045);
+}
+
+.enterprise-form,
+.enterprise-form * { min-width: 0; }
+
+.enterprise-form {
+  display: grid;
+  gap: 11px;
+}
+
+.enterprise-form .field-row {
+  display: grid;
+  gap: 10px;
+}
+
+.enterprise-form .two-up {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.enterprise-form label {
+  display: grid;
+  gap: 5px;
+  color: var(--primary-deep);
+  font-size: .68rem;
+  font-weight: 700;
+}
+
+.enterprise-form label span {
+  line-height: 1.2;
+}
+
+.enterprise-form input,
+.enterprise-form textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: #fbfcfb;
+  color: var(--text);
+  padding: 8px 10px;
+  font-size: .74rem;
+  line-height: 1.3;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.enterprise-form input { height: 37px; }
+
+.enterprise-form textarea {
+  min-height: 78px;
+  resize: vertical;
+}
+
+.enterprise-form input::placeholder,
+.enterprise-form textarea::placeholder {
+  color: #98a39e;
+  font-size: .7rem;
+}
+
+.enterprise-form input:hover,
+.enterprise-form textarea:hover { border-color: var(--border-strong); }
+
+.enterprise-form input:focus,
+.enterprise-form textarea:focus {
+  outline: none;
+  border-color: #9fb8aa;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(23,61,48,.075);
+}
+
+.enterprise-form .btn-submit {
+  width: 100%;
+  min-height: 38px;
+  margin-top: 1px;
+  border-radius: 7px;
+  font-size: .72rem;
+  font-weight: 750;
+}
+
+.enterprise-form .form-status {
+  min-height: 0;
+  margin: 0;
+  text-align: center;
+  font-size: .68rem;
+}
+
+.enterprise-form .form-status:empty { display: none; }
+.enterprise-form .form-status.loading { color: var(--muted); }
+.enterprise-form .form-status.error { color: var(--danger); }
+
+/* The inline success text is replaced visually by the modal. */
+.enterprise-form .form-status.success { display: none !important; }
+
+/* Success modal */
+.procurement-success-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(13, 29, 23, .42);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .22s ease, visibility .22s ease;
+}
+
+.procurement-success-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.procurement-success-dialog {
+  width: min(100%, 410px);
+  padding: 25px 24px 22px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  box-shadow: 0 24px 70px rgba(13,41,32,.2);
+  text-align: center;
+  transform: translateY(10px) scale(.97);
+  transition: transform .28s cubic-bezier(.2,.8,.2,1);
+}
+
+.procurement-success-modal.is-open .procurement-success-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.success-check {
+  width: 66px;
+  height: 66px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--success-soft);
+  border: 1px solid #cfe8d9;
+  color: var(--success);
+}
+
+.success-check svg {
+  width: 36px;
+  height: 36px;
+  overflow: visible;
+}
+
+.success-check circle {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-dasharray: 110;
+  stroke-dashoffset: 110;
+}
+
+.success-check path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 35;
+  stroke-dashoffset: 35;
+}
+
+.procurement-success-modal.is-open .success-check circle {
+  animation: successCircle .45s ease forwards;
+}
+
+.procurement-success-modal.is-open .success-check path {
+  animation: successTick .38s .28s ease forwards;
+}
+
+@keyframes successCircle { to { stroke-dashoffset: 0; } }
+@keyframes successTick { to { stroke-dashoffset: 0; } }
+
+.procurement-success-dialog .success-kicker {
+  margin: 0 0 5px;
+  color: var(--success);
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.procurement-success-dialog h3 {
+  margin: 0;
+  color: var(--primary-deep);
+  font-size: 1.2rem;
+}
+
+.procurement-success-dialog p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: .75rem;
+  line-height: 1.55;
+}
+
+.success-reference {
+  margin: 15px 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.success-reference span {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: .58rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.success-reference strong {
+  color: var(--primary);
+  font-size: .95rem;
+  letter-spacing: .04em;
+}
+
+.success-close {
+  width: 100%;
+  min-height: 37px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--primary);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 750;
+}
+
+.success-close:hover { background: var(--primary-deep); }
+
+@media (max-width: 900px) {
+  .procurement-grid { grid-template-columns: 1fr; gap: 12px; }
+  .procurement-grid > div:first-child { padding: 2px 2px 4px; }
+}
+
+@media (max-width: 620px) {
+  .procurement-grid .two-up,
+  .enterprise-form .two-up { grid-template-columns: 1fr; }
+  .enterprise-form { padding: 12px; gap: 9px; }
+  .enterprise-form .field-row { gap: 9px; }
+  .enterprise-form input { height: 36px; }
+  .enterprise-form textarea { min-height: 72px; }
+  .procurement-grid h2 { font-size: 1.22rem; }
+  .procurement-success-dialog { padding: 22px 18px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .procurement-success-modal,
+  .procurement-success-dialog { transition: none; }
+  .procurement-success-modal.is-open .success-check circle,
+  .procurement-success-modal.is-open .success-check path { animation: none; stroke-dashoffset: 0; }
+}
