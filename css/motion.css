@@ -1,0 +1,116 @@
+/* =========================================================
+   EASYWORK ENTERPRISE — QUIET MOTION SYSTEM
+   UI ONLY. No API/backend dependencies.
+   ========================================================= */
+
+:root {
+  --motion-fast: 180ms;
+  --motion-base: 360ms;
+  --motion-slow: 480ms;
+  --motion-ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* Page entrance: calm and brief. */
+body.nav-ready .workspace {
+  animation: ew-page-in var(--motion-slow) var(--motion-ease) both;
+}
+
+/* Scroll-reveal targets. JS adds .motion-ready and .motion-visible. */
+.motion-reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--motion-base) var(--motion-ease),
+              transform var(--motion-base) var(--motion-ease);
+  transition-delay: var(--motion-delay, 0ms);
+}
+
+.motion-reveal.motion-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-reveal.motion-ready {
+  will-change: opacity, transform;
+}
+
+/* Keep cards responsive without making them jump. */
+.content-panel,
+.metric-card,
+.preview-card,
+.action-card,
+.process-card,
+.coverage-card,
+.info-box,
+.hero-panel,
+.cta-panel {
+  transition: transform var(--motion-base) var(--motion-ease),
+              box-shadow var(--motion-base) var(--motion-ease),
+              border-color var(--motion-base) ease;
+}
+
+.content-panel:hover,
+.metric-card:hover,
+.process-card:hover,
+.coverage-card:hover,
+.info-box:hover {
+  transform: translateY(-2px);
+}
+
+.preview-card:hover,
+.action-card:hover {
+  transform: translateY(-3px);
+}
+
+.preview-image img,
+.product-image img {
+  transition: transform 420ms var(--motion-ease);
+}
+
+.preview-card:hover .preview-image img,
+.product-card:hover .product-image img {
+  transform: scale(1.025);
+}
+
+/* Buttons: small, tactile feedback only. */
+.btn,
+.text-link,
+.support-link,
+.side-nav a,
+.mobile-header-action,
+.mobile-bottom-nav a {
+  transition: transform var(--motion-fast) ease,
+              background-color var(--motion-fast) ease,
+              border-color var(--motion-fast) ease,
+              color var(--motion-fast) ease,
+              box-shadow var(--motion-fast) ease;
+}
+
+.btn:active,
+.mobile-header-action:active,
+.mobile-bottom-nav a:active {
+  transform: scale(.985);
+}
+
+/* Respect accessibility settings. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .motion-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@keyframes ew-page-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
