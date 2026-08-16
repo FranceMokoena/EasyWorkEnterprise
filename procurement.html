@@ -57,14 +57,16 @@
         </header>
 
         <div class="page-content">
-          <section class="content-panel">
+          <section class="content-panel procurement-page">
             <div class="section-label">PROCUREMENT REQUEST</div>
+
             <div class="procurement-grid">
               <div>
-                <h2>Customers and businesses can submit material requirements for sourcing and quotation.</h2>
-                <p>Please provide your material requirement details and the Easywork Enterprise team can respond with supply and delivery information.</p>
+                <h2>Submit Your Request for sourcing and quotation</h2>
+                <p>Please provide your material, quantity and delivery requirements. Our team will review your request and respond with sourcing, quotation and delivery information.</p>
+
                 <div class="info-callout">
-                  <strong>Supply areas:</strong>
+                  <strong>Supply areas</strong>
                   <span>Mpumalanga, Mbombela / Nelspruit, South Africa</span>
                 </div>
               </div>
@@ -116,7 +118,7 @@
 
                 <label>
                   <span>Additional Requirements</span>
-                  <textarea name="additional" rows="5" placeholder="Any specific requirements, specifications or delivery details"></textarea>
+                  <textarea name="additional" rows="4" placeholder="Specifications or delivery details"></textarea>
                 </label>
 
                 <button class="btn btn-primary btn-submit" type="submit">Submit Procurement Request</button>
@@ -128,10 +130,30 @@
       </main>
     </div>
 
+    <div class="procurement-success-modal" id="procurementSuccessModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="procurementSuccessTitle">
+      <div class="procurement-success-dialog">
+        <div class="success-check" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="presentation">
+            <circle cx="20" cy="20" r="17"></circle>
+            <path d="M11.5 20.5 17 26l11.5-12"></path>
+          </svg>
+        </div>
+        <p class="success-kicker">Request received</p>
+        <h3 id="procurementSuccessTitle">Procurement request submitted</h3>
+        <p>Your request has been successfully received. Easywork Enterprise will review your requirements and contact you regarding sourcing, quotation and delivery.</p>
+        <div class="success-reference">
+          <span>Request Reference</span>
+          <strong id="procurementSuccessReference">—</strong>
+        </div>
+        <button type="button" class="success-close" id="procurementSuccessClose">Done</button>
+      </div>
+    </div>
+
     <a class="floating-whatsapp" href="#" aria-label="WhatsApp Easywork" data-message="Hello Easywork Enterprise, I would like to submit a procurement request.">WhatsApp Easywork</a>
 
     <script src="js/script.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/forms.js"></script>
+    <script src="js/procurement-ui.js"></script>
   </body>
 </html>
