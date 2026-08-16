@@ -1,12 +1,31 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
   const preloader = document.querySelector('.preloader');
   if (preloader) {
+    const loaderText = preloader.querySelector('.loader span');
+    const loadingMessage = 'Easywork Enterprise';
+
+    /* Subtle type-on effect for the existing loader. No backend dependency. */
+    if (loaderText) {
+      loaderText.textContent = '';
+      loaderText.setAttribute('aria-label', loadingMessage);
+
+      let index = 0;
+      const typeNext = () => {
+        if (index < loadingMessage.length) {
+          loaderText.textContent += loadingMessage.charAt(index);
+          index += 1;
+          window.setTimeout(typeNext, 30);
+        }
+      };
+      typeNext();
+    }
+
     setTimeout(() => preloader.classList.add('loaded'), 200);
     setTimeout(() => {
       preloader.style.display = 'none';
       preloader.style.visibility = 'hidden';
       preloader.style.pointerEvents = 'none';
-    }, 600);
+    }, 700);
   }
 
   const currentPage = document.body.dataset.page || 'index.html';
