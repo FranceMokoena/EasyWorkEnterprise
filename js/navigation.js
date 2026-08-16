@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sidebar = document.querySelector('.sidebar');
   const sideLinks = document.querySelectorAll('.side-nav a');
   const BRAND_LOGO = 'assets/logo/easywork-logo.svg';
+  const SITE_URL = 'https://easyworkenterprise.co.za';
 
   /* UI-only stylesheet. No API/backend dependencies. */
   const loadUIFixes = () => {
@@ -71,11 +72,149 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!appleIcon.parentNode) document.head.appendChild(appleIcon);
   };
 
+  /* Search-engine presentation and structured data. This is intentionally
+     generated from the existing page content so it stays consistent with the UI. */
+  const applySEO = () => {
+    const seo = {
+      'index.html': {
+        title: 'Easywork Enterprise | Business Materials Supply & Delivery in South Africa',
+        description: 'Easywork Enterprise supplies plastic bags, refuse bags, heavy-duty plastics and general business materials with supply and delivery support across South Africa.'
+      },
+      'products.html': {
+        title: 'Plastic Bags, Refuse Bags & Business Materials | Easywork Enterprise',
+        description: 'Browse Easywork Enterprise products including plastic bags, refuse bags, heavy-duty plastics and general materials for business supply requirements in South Africa.'
+      },
+      'services.html': {
+        title: 'Business Materials Supply & Delivery Services | Easywork Enterprise',
+        description: 'Business materials sourcing, supply and delivery services from Easywork Enterprise for customers and organisations across Mpumalanga and South Africa.'
+      },
+      'procurement.html': {
+        title: 'Request Materials & Quotation | Easywork Enterprise',
+        description: 'Submit your request for sourcing and quotation for plastic bags, refuse bags, business materials and delivery requirements from Easywork Enterprise.'
+      },
+      'delivery.html': {
+        title: 'Materials Supply & Delivery Across South Africa | Easywork Enterprise',
+        description: 'Easywork Enterprise coordinates business material supply and delivery requirements across Mpumalanga and South Africa.'
+      },
+      'about.html': {
+        title: 'About Easywork Enterprise | Materials Supply & Delivery',
+        description: 'Learn about Easywork Enterprise and its business materials supply, plastic products, refuse bags and delivery services in South Africa.'
+      },
+      'contact.html': {
+        title: 'Contact Easywork Enterprise | Supply & Delivery Enquiries',
+        description: 'Contact Easywork Enterprise for plastic bag supply, refuse bags, general materials, sourcing, quotations and delivery enquiries in South Africa.'
+      }
+    };
+
+    const data = seo[currentPage] || seo['index.html'];
+    const pathMap = {
+      'index.html': '/',
+      'products.html': '/products/',
+      'services.html': '/services/',
+      'procurement.html': '/procurement/',
+      'delivery.html': '/delivery/',
+      'about.html': '/about/',
+      'contact.html': '/contact/'
+    };
+    const canonicalUrl = `${SITE_URL}${pathMap[currentPage] || '/'}`;
+
+    document.title = data.title;
+
+    const setMeta = (selector, attributes) => {
+      let tag = document.head.querySelector(selector);
+      if (!tag) {
+        tag = document.createElement('meta');
+        document.head.appendChild(tag);
+      }
+      Object.entries(attributes).forEach(([key, value]) => tag.setAttribute(key, value));
+    };
+
+    setMeta('meta[name="description"]', { name: 'description', content: data.description });
+    setMeta('meta[name="robots"]', { name: 'robots', content: 'index, follow, max-image-preview:large' });
+    setMeta('meta[property="og:title"]', { property: 'og:title', content: data.title });
+    setMeta('meta[property="og:description"]', { property: 'og:description', content: data.description });
+    setMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' });
+    setMeta('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl });
+    setMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: 'Easywork Enterprise' });
+    setMeta('meta[name="twitter:card"]', { name: 'twitter:card', content: 'summary' });
+    setMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: data.title });
+    setMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: data.description });
+
+    let canonical = document.head.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
+
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Easywork Enterprise (Pty) Ltd',
+      url: SITE_URL,
+      logo: `${SITE_URL}/assets/logo/easywork-logo.svg`,
+      description: 'Business materials supply and delivery service in South Africa, including plastic bags, refuse bags, heavy-duty plastics and general materials.',
+      areaServed: {
+        '@type': 'Country',
+        name: 'South Africa'
+      },
+      knowsAbout: [
+        'Business materials supply',
+        'Plastic bags',
+        'Refuse bags',
+        'Heavy-duty plastic bags',
+        'Materials sourcing',
+        'Business material delivery'
+      ]
+    };
+
+    const websiteSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Easywork Enterprise',
+      url: SITE_URL,
+      description: data.description,
+      inLanguage: 'en-ZA'
+    };
+
+    document.head.querySelectorAll('script[data-easywork-schema]').forEach((node) => node.remove());
+    [schema, websiteSchema].forEach((item) => {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.dataset.easyworkSchema = 'true';
+      script.textContent = JSON.stringify(item);
+      document.head.appendChild(script);
+    });
+
+    if (currentPage === 'products.html') {
+      const productCards = [...document.querySelectorAll('.product-card')];
+      if (productCards.length) {
+        const itemList = {
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: 'Easywork Enterprise Products',
+          itemListElement: productCards.map((card, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: card.dataset.name || card.querySelector('h3')?.textContent.trim() || 'Business material'
+          }))
+        };
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.dataset.easyworkSchema = 'true';
+        script.textContent = JSON.stringify(itemList);
+        document.head.appendChild(script);
+      }
+    }
+  };
+
   loadUIFixes();
   loadBrandUI();
   loadProductsUI();
   loadMotionUI();
   applyBranding();
+  applySEO();
 
   const routes = [
     { href: 'index.html', label: 'Home', icon: '⌂' },
