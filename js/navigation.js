@@ -1,116 +1,135 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const currentPage = document.body.dataset.page || 'index.html';
+  const body = document.body;
+  const currentPage = body.dataset.page || window.location.pathname.split('/').pop() || 'index.html';
+  const sidebar = document.querySelector('.sidebar');
   const sideLinks = document.querySelectorAll('.side-nav a');
 
-  sideLinks.forEach((link) => {
-    const href = link.getAttribute('data-page');
-    if (href === currentPage) {
-      link.classList.add('active');
-    }
+  const routes = [
+    { href: 'index.html', label: 'Home', icon: '⌂' },
+    { href: 'products.html', label: 'Products', icon: '▦' },
+    { href: 'services.html', label: 'Services', icon: '▤' },
+    { href: 'procurement.html', label: 'Request', icon: '+' },
+    { href: 'delivery.html', label: 'Delivery', icon: '▰' },
+    { href: 'about.html', label: 'About', icon: 'ⓘ' },
+    { href: 'contact.html', label: 'Contact', icon: '✉' }
+  ];
 
-    if (!link.querySelector('.nav-label')) {
-      const label = document.createElement('span');
-      label.className = 'nav-label';
-      label.textContent = link.textContent.trim();
-      link.textContent = '';
-      link.appendChild(label);
+  sideLinks.forEach((link) => {
+    const href = link.getAttribute('data-page') || link.getAttribute('href');
+    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+      link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
     }
   });
 
-  const sidebar = document.querySelector('.sidebar');
-  const brandBlock = sidebar ? sidebar.querySelector('.brand-block') : null;
+  if (sidebar) {
+    const brandBlock = sidebar.querySelector('.brand-block');
 
-  if (brandBlock && !sidebar.querySelector('.sidebar-toggle')) {
-    const toggleButton = document.createElement('button');
-    toggleButton.type = 'button';
-    toggleButton.className = 'sidebar-toggle';
-    toggleButton.setAttribute('aria-label', 'Toggle sidebar');
-    toggleButton.setAttribute('aria-expanded', 'true');
-    toggleButton.innerHTML = '<span></span><span></span><span></span>';
+    if (brandBlock && !brandBlock.querySelector('.sidebar-toggle')) {
+      const toggleButton = document.createElement('button');
+      toggleButton.type = 'button';
+      toggleButton.className = 'sidebar-toggle';
+      toggleButton.setAttribute('aria-label', 'Open navigation menu');
+      toggleButton.setAttribute('aria-expanded', 'false');
+      toggleButton.innerHTML = '<span></span><span></span><span></span>';
+      brandBlock.appendChild(toggleButton);
 
-    toggleButton.addEventListener('click', () => {
-      const isMobile = window.innerWidth <= 800;
-
-      if (isMobile) {
-        const isOpen = sidebar.classList.toggle('open');
-        document.body.classList.toggle('sidebar-open', isOpen);
-        toggleButton.setAttribute('aria-expanded', String(isOpen));
-        return;
-      }
-
-      const isCollapsed = document.body.classList.toggle('sidebar-collapsed');
-      sidebar.classList.toggle('sidebar-collapsed', isCollapsed);
-      toggleButton.setAttribute('aria-expanded', String(!isCollapsed));
-    });
-
-    brandBlock.insertBefore(toggleButton, brandBlock.firstChild);
-  }
-
-
-
-
-
-
-
-
-  const brandText = brandBlock ? brandBlock.querySelector('.brand-text') : null;
-  if (brandText === null && brandBlock) {
-    const textWrap = document.createElement('div');
-    textWrap.className = 'brand-text';
-    const strong = brandBlock.querySelector('strong');
-    const span = brandBlock.querySelector('span');
-    if (strong && span) {
-      const container = document.createElement('div');
-      container.appendChild(strong);
-      container.appendChild(span);
-      textWrap.appendChild(container);
-      brandBlock.appendChild(textWrap);
+      toggleButton.addEventListener('click', () => {
+        const open = sidebar.classList.toggle('open');
+        body.classList.toggle('sidebar-open', open);
+        toggleButton.setAttribute('aria-expanded', String(open));
+        toggleButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      });
     }
   }
 
-  const syncSidebarState = () => {
-    const isMobile = window.innerWidth <= 800;
-    const toggleButton = sidebar ? sidebar.querySelector('.sidebar-toggle') : null;
-
-    if (isMobile) {
-      document.body.classList.remove('sidebar-collapsed');
-      if (sidebar) {
-        sidebar.classList.remove('sidebar-collapsed');
-      }
-      if (toggleButton) {
-        toggleButton.setAttribute('aria-expanded', String(sidebar.classList.contains('open')));
-      }
-      return;
-    }
-
-    if (sidebar) {
-      sidebar.classList.remove('open');
-    }
-    document.body.classList.remove('sidebar-open');
-    if (toggleButton) {
-      toggleButton.setAttribute('aria-expanded', String(!document.body.classList.contains('sidebar-collapsed')));
+  const closeSidebar = () => {
+    if (!sidebar) return;
+    sidebar.classList.remove('open');
+    body.classList.remove('sidebar-open');
+    const button = sidebar.querySelector('.sidebar-toggle');
+    if (button) {
+      button.setAttribute('aria-expanded', 'false');
+      button.setAttribute('aria-label', 'Open navigation menu');
     }
   };
 
-  window.addEventListener('resize', syncSidebarState);
-  syncSidebarState();
+  sideLinks.forEach((link) => {
+    link.addEventListener('click', closeSidebar);
+  });
 
-  const mobileToggle = document.querySelector('.mobile-menu-toggle');
-  const mobileNav = document.querySelector('.mobile-nav');
+  const createMobileHeader = () => {
+    if (document.querySelector('.mobile-header')) return;
 
-  if (mobileToggle && mobileNav) {
-    mobileToggle.addEventListener('click', () => {
-      const isOpen = mobileNav.classList.toggle('open');
-      mobileToggle.setAttribute('aria-expanded', String(isOpen));
-      document.body.classList.toggle('menu-open', isOpen);
+    const header = document.createElement('header');
+    header.className = 'mobile-header';
+    header.innerHTML = `
+      <button class="mobile-header-menu" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <a class="mobile-brand" href="index.html" aria-label="Easywork Enterprise home">
+        <img src="assets/logo/logo.svg" alt="" />
+        <span><strong>Easywork</strong><small>Enterprise</small></span>
+      </a>
+      <a class="mobile-header-action" href="procurement.html" aria-label="Request materials"><span>+</span><b>Request</b></a>
+    `;
+
+    document.body.insertBefore(header, document.body.firstChild);
+
+    const button = header.querySelector('.mobile-header-menu');
+    button.addEventListener('click', () => {
+      const open = sidebar ? sidebar.classList.toggle('open') : false;
+      body.classList.toggle('sidebar-open', open);
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      const sidebarButton = sidebar ? sidebar.querySelector('.sidebar-toggle') : null;
+      if (sidebarButton) sidebarButton.setAttribute('aria-expanded', String(open));
     });
+  };
 
-    mobileNav.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        mobileToggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('menu-open');
-      });
-    });
+  const createMobileBottomNav = () => {
+    if (document.querySelector('.mobile-bottom-nav')) return;
+
+    const nav = document.createElement('nav');
+    nav.className = 'mobile-bottom-nav';
+    nav.setAttribute('aria-label', 'Mobile navigation');
+
+    const primary = [routes[0], routes[1], routes[3], routes[6]];
+    nav.innerHTML = primary.map((route) => {
+      const active = route.href === currentPage ? ' active' : '';
+      return `<a href="${route.href}" class="${active}"${route.href === currentPage ? ' aria-current="page"' : ''}><span class="mobile-nav-icon">${route.icon}</span><span>${route.label}</span></a>`;
+    }).join('');
+
+    document.body.appendChild(nav);
+  };
+
+  const createSidebarOverlay = () => {
+    if (!sidebar || document.querySelector('.sidebar-overlay')) return;
+
+    const overlay = document.createElement('button');
+    overlay.type = 'button';
+    overlay.className = 'sidebar-overlay';
+    overlay.setAttribute('aria-label', 'Close navigation menu');
+    overlay.tabIndex = -1;
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', closeSidebar);
+  };
+
+  createMobileHeader();
+  createMobileBottomNav();
+  createSidebarOverlay();
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeSidebar();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) closeSidebar();
+  });
+
+  if (typeof window.requestAnimationFrame === 'function') {
+    window.requestAnimationFrame(() => body.classList.add('nav-ready'));
+  } else {
+    body.classList.add('nav-ready');
   }
 });
