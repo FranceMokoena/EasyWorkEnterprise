@@ -2,17 +2,18 @@
 
 :root { --easywork-logo: url('../assets/logo/easywork-logo.svg'); }
 
-/* Crisp vector logo: controlled sizing prevents blur while keeping the full wordmark visible. */
+/* Sidebar: compact vertical footprint while keeping the full vector logo crisp. */
 .sidebar .brand-block {
-  min-height: 112px;
-  padding: 8px 14px;
+  min-height: 88px;
+  height: 88px;
+  padding: 4px 14px;
   justify-content: flex-start;
   background: #fff;
 }
 
 .sidebar .brand-mark {
   width: 184px;
-  height: 94px;
+  height: 76px;
   object-fit: contain;
   object-position: center;
   border-radius: 4px;
@@ -22,15 +23,15 @@
 
 .sidebar .brand-copy { display: none; }
 
-/* Top bar: intentionally wider so the supplied wordmark reads clearly. */
+/* Top bar: wider horizontally to use the available white space without making the header taller. */
 .topbar-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 184px;
+  width: 245px;
   height: 58px;
-  flex: 0 0 184px;
-  padding: 1px 3px;
+  flex: 0 0 245px;
+  padding: 1px 4px;
   border-radius: 4px;
   background: #fff;
   overflow: hidden;
@@ -66,21 +67,27 @@
 
 @media (max-width: 900px) {
   .sidebar .brand-block {
-    min-height: 108px;
-    padding: 8px 16px;
+    min-height: 84px;
+    height: 84px;
+    padding: 3px 14px;
   }
 
   .sidebar .brand-mark {
     width: 184px;
-    height: 92px;
+    height: 72px;
     flex-basis: 184px;
+  }
+
+  .topbar-logo {
+    width: 220px;
+    flex-basis: 220px;
   }
 }
 
 @media (max-width: 640px) {
   .topbar-logo {
-    width: 150px;
-    flex-basis: 150px;
+    width: 175px;
+    flex-basis: 175px;
     height: 48px;
   }
 
