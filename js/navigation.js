@@ -14,7 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(link);
   };
 
+  const loadProductsUI = () => {
+    if (currentPage !== 'products.html') return;
+    if (document.querySelector('link[data-easywork-products-ui]')) return;
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'css/products-revamp.css';
+    link.dataset.easyworkProductsUi = 'true';
+    document.head.appendChild(link);
+  };
+
   loadUIFixes();
+  loadProductsUI();
 
   const routes = [
     { href: 'index.html', label: 'Home', icon: '⌂' },
