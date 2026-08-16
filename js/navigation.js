@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentPage = body.dataset.page || window.location.pathname.split('/').pop() || 'index.html';
   const sidebar = document.querySelector('.sidebar');
   const sideLinks = document.querySelectorAll('.side-nav a');
+  const BRAND_LOGO = 'assets/logo/easywork-logo.jpg';
 
   /* UI-only stylesheet. No API/backend dependencies. */
   const loadUIFixes = () => {
@@ -11,6 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
     link.rel = 'stylesheet';
     link.href = 'css/ui-fixes.css';
     link.dataset.easyworkUiFixes = 'true';
+    document.head.appendChild(link);
+  };
+
+  const loadBrandUI = () => {
+    if (document.querySelector('link[data-easywork-brand-ui]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'css/brand.css';
+    link.dataset.easyworkBrandUi = 'true';
     document.head.appendChild(link);
   };
 
@@ -34,9 +44,40 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(link);
   };
 
+  const applyBranding = () => {
+    /* Use the supplied logo everywhere the site currently shows the old logo/icon. */
+    document.querySelectorAll('.sidebar .brand-mark').forEach((img) => {
+      img.src = BRAND_LOGO;
+      img.alt = 'Easywork Enterprise logo';
+    });
+
+    const topbarBrand = document.querySelector('.topbar-inner > :first-child');
+    if (topbarBrand && !topbarBrand.classList.contains('topbar-logo')) {
+      const logoLink = document.createElement('a');
+      logoLink.className = 'topbar-logo';
+      logoLink.href = 'index.html';
+      logoLink.setAttribute('aria-label', 'Easywork Enterprise home');
+      logoLink.innerHTML = `<img src="${BRAND_LOGO}" alt="Easywork Enterprise" />`;
+      topbarBrand.replaceWith(logoLink);
+    }
+
+    const favicon = document.querySelector('link[rel="icon"]') || document.createElement('link');
+    favicon.rel = 'icon';
+    favicon.type = 'image/jpeg';
+    favicon.href = BRAND_LOGO;
+    if (!favicon.parentNode) document.head.appendChild(favicon);
+
+    const appleIcon = document.querySelector('link[rel="apple-touch-icon"]') || document.createElement('link');
+    appleIcon.rel = 'apple-touch-icon';
+    appleIcon.href = BRAND_LOGO;
+    if (!appleIcon.parentNode) document.head.appendChild(appleIcon);
+  };
+
   loadUIFixes();
+  loadBrandUI();
   loadProductsUI();
   loadMotionUI();
+  applyBranding();
 
   const routes = [
     { href: 'index.html', label: 'Home', icon: '⌂' },
@@ -58,26 +99,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const closeSidebar = () => {
     if (!sidebar) return;
-
     sidebar.classList.remove('open');
     body.classList.remove('sidebar-open');
-
     const headerButton = document.querySelector('.mobile-header-menu');
     if (headerButton) {
       headerButton.setAttribute('aria-expanded', 'false');
       headerButton.setAttribute('aria-label', 'Open navigation menu');
     }
-
     const closeButton = sidebar.querySelector('.mobile-drawer-close');
     if (closeButton) closeButton.setAttribute('aria-label', 'Close navigation menu');
   };
 
   const openSidebar = () => {
     if (!sidebar || window.innerWidth > 900) return;
-
     sidebar.classList.add('open');
     body.classList.add('sidebar-open');
-
     const headerButton = document.querySelector('.mobile-header-menu');
     if (headerButton) {
       headerButton.setAttribute('aria-expanded', 'true');
@@ -93,10 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const createDrawerCloseButton = () => {
     if (!sidebar) return;
-
     const brandBlock = sidebar.querySelector('.brand-block');
     if (!brandBlock || brandBlock.querySelector('.mobile-drawer-close')) return;
-
     const closeButton = document.createElement('button');
     closeButton.type = 'button';
     closeButton.className = 'mobile-drawer-close';
@@ -109,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const createMobileHeader = () => {
     if (document.querySelector('.mobile-header')) return;
-
     const header = document.createElement('header');
     header.className = 'mobile-header';
     header.innerHTML = `
@@ -117,37 +150,31 @@ document.addEventListener('DOMContentLoaded', () => {
         <span></span><span></span><span></span>
       </button>
       <a class="mobile-brand" href="index.html" aria-label="Easywork Enterprise home">
-        <img src="assets/logo/logo.svg" alt="" />
+        <img src="${BRAND_LOGO}" alt="Easywork Enterprise" />
         <span><strong>Easywork</strong><small>Enterprise</small></span>
       </a>
       <a class="mobile-header-action" href="procurement.html" aria-label="Request materials"><span>+</span><b>Request</b></a>
     `;
-
     document.body.insertBefore(header, document.body.firstChild);
-
     const button = header.querySelector('.mobile-header-menu');
     button.addEventListener('click', toggleSidebar);
   };
 
   const createMobileBottomNav = () => {
     if (document.querySelector('.mobile-bottom-nav')) return;
-
     const nav = document.createElement('nav');
     nav.className = 'mobile-bottom-nav';
     nav.setAttribute('aria-label', 'Mobile navigation');
-
     const primary = [routes[0], routes[1], routes[3], routes[6]];
     nav.innerHTML = primary.map((route) => {
       const active = route.href === currentPage ? ' active' : '';
       return `<a href="${route.href}" class="${active}"${route.href === currentPage ? ' aria-current="page"' : ''}><span class="mobile-nav-icon">${route.icon}</span><span>${route.label}</span></a>`;
     }).join('');
-
     document.body.appendChild(nav);
   };
 
   const createSidebarOverlay = () => {
     if (!sidebar || document.querySelector('.sidebar-overlay')) return;
-
     const overlay = document.createElement('button');
     overlay.type = 'button';
     overlay.className = 'sidebar-overlay';
@@ -163,17 +190,9 @@ document.addEventListener('DOMContentLoaded', () => {
   createMobileBottomNav();
   createSidebarOverlay();
 
-  sideLinks.forEach((link) => {
-    link.addEventListener('click', closeSidebar);
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeSidebar();
-  });
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 900) closeSidebar();
-  });
+  sideLinks.forEach((link) => link.addEventListener('click', closeSidebar));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeSidebar(); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 900) closeSidebar(); });
 
   if (typeof window.requestAnimationFrame === 'function') {
     window.requestAnimationFrame(() => body.classList.add('nav-ready'));
