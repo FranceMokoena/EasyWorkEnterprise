@@ -3,7 +3,6 @@
    UI/UX ONLY. No API, backend or data-processing changes.
    ========================================================= */
 
-/* Catalogue header */
 .product-layout {
   grid-template-columns: minmax(0, 1.8fr) minmax(280px, .85fr);
   gap: 18px;
@@ -42,11 +41,8 @@
   box-shadow: none;
 }
 
-.search-wrap input::placeholder {
-  color: #89958f;
-}
+.search-wrap input::placeholder { color: #89958f; }
 
-/* Compact, meaningful filter tabs */
 .category-list {
   display: flex;
   align-items: center;
@@ -82,13 +78,10 @@
   border-color: var(--primary);
 }
 
-/* Hide unused category tabs without changing the existing filtering logic. */
+/* Keep only meaningful catalogue filters visible. Existing filter logic remains untouched. */
 .category-list .category-btn:nth-child(4),
-.category-list .category-btn:nth-child(5) {
-  display: none;
-}
+.category-list .category-btn:nth-child(5) { display: none; }
 
-/* Product grid */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -129,9 +122,7 @@
   transition: transform .35s ease;
 }
 
-.product-card:hover .product-image img {
-  transform: scale(1.025);
-}
+.product-card:hover .product-image img { transform: scale(1.025); }
 
 .product-body {
   padding: 13px 14px 14px;
@@ -140,12 +131,10 @@
   flex: 1;
 }
 
-/* Product cards intentionally show only the requested essentials. */
+/* Product cards intentionally show only name, availability, price note and actions. */
 .product-body .meta-label,
 .product-body > p:not(.small-copy),
-.product-body .small-copy {
-  display: none;
-}
+.product-body .small-copy { display: none; }
 
 .product-body h3 {
   margin: 0 0 8px;
@@ -164,7 +153,6 @@
   min-height: 22px;
 }
 
-/* Keep all product status labels consistent. */
 .product-meta-row .status-badge {
   min-height: 22px;
   padding: 4px 8px;
@@ -174,23 +162,28 @@
   line-height: 1;
 }
 
+/* Normalize both existing status variants to the requested AVAILABLE label. */
 .product-meta-row .status-badge.info {
   background: var(--success-soft);
   color: var(--success);
+  font-size: 0;
 }
 
-/* Small italic pricing note, as requested. */
+.product-meta-row .status-badge.info::after {
+  content: "Available";
+  font-size: .6rem;
+}
+
+.product-meta-row .status-badge.success { font-size: .6rem; }
+
+/* Small italic pricing note. */
 .product-meta-row strong {
   margin-left: auto;
   color: #7b8781;
-  font-size: .64rem;
+  font-size: 0;
   font-weight: 500;
   font-style: italic;
   white-space: nowrap;
-}
-
-.product-meta-row strong {
-  font-size: 0;
 }
 
 .product-meta-row strong::after {
@@ -222,11 +215,8 @@
   box-shadow: none;
 }
 
-.product-actions .btn-whatsapp:hover {
-  background: #e3f3e9;
-}
+.product-actions .btn-whatsapp:hover { background: #e3f3e9; }
 
-/* Product detail panel remains functional, but becomes visually lighter. */
 .product-detail-panel {
   border-radius: 12px;
   padding: 14px;
@@ -297,19 +287,11 @@
   font-size: .68rem;
 }
 
-/* Cleaner empty/search state if filtering returns no cards. */
-.products-grid .product-card[style*="display: none"] {
-  display: none !important;
-}
+.products-grid .product-card[style*="display: none"] { display: none !important; }
 
 @media (max-width: 1050px) {
-  .product-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .product-detail-panel {
-    position: static;
-  }
+  .product-layout { grid-template-columns: 1fr; }
+  .product-detail-panel { position: static; }
 }
 
 @media (max-width: 720px) {
@@ -323,9 +305,7 @@
     flex: none;
   }
 
-  .search-wrap input {
-    height: 38px;
-  }
+  .search-wrap input { height: 38px; }
 
   .category-list {
     gap: 6px;
@@ -351,13 +331,8 @@
     flex-basis: 190px;
   }
 
-  .product-body {
-    padding: 12px;
-  }
-
-  .product-body h3 {
-    font-size: 1rem;
-  }
+  .product-body { padding: 12px; }
+  .product-body h3 { font-size: 1rem; }
 }
 
 @media (max-width: 420px) {
@@ -366,7 +341,5 @@
     flex-basis: 165px;
   }
 
-  .product-actions .btn {
-    font-size: .64rem;
-  }
+  .product-actions .btn { font-size: .64rem; }
 }
