@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /easywork-api/
+Disallow: /netlify/functions/
+
+Sitemap: https://easyworkenterprise.co.za/sitemap.xml
