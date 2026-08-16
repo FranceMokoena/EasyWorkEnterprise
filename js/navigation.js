@@ -25,8 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(link);
   };
 
+  const loadMotionUI = () => {
+    if (document.querySelector('link[data-easywork-motion]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'css/motion.css';
+    link.dataset.easyworkMotion = 'true';
+    document.head.appendChild(link);
+  };
+
   loadUIFixes();
   loadProductsUI();
+  loadMotionUI();
 
   const routes = [
     { href: 'index.html', label: 'Home', icon: '⌂' },
@@ -169,5 +179,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.requestAnimationFrame(() => body.classList.add('nav-ready'));
   } else {
     body.classList.add('nav-ready');
+  }
+
+  /* Motion is presentation-only and deliberately loaded after navigation setup. */
+  if (!document.querySelector('script[data-easywork-motion]')) {
+    const motionScript = document.createElement('script');
+    motionScript.src = 'js/motion.js';
+    motionScript.dataset.easyworkMotion = 'true';
+    document.body.appendChild(motionScript);
   }
 });
