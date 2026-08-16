@@ -1,0 +1,13 @@
+{
+  "name": "easywork-enterprise",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx netlify dev",
+    "start": "npx netlify dev"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "nodemailer": "^9.0.5"
+  }
+}

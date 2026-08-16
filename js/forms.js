@@ -5,11 +5,13 @@
    ========================================================= */
 
 /*
- * Local Node.js API
- *
- * When deployed later, change this to your live API URL.
+ * Use the live Netlify origin when the site is deployed, and keep the
+ * local Express server as the development fallback.
  */
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL =
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:5000'
+        : window.location.origin;
 
 
 /* =========================================================
