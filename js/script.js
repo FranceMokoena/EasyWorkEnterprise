@@ -4,7 +4,7 @@
     const loaderText = preloader.querySelector('.loader span');
     const loadingMessage = 'Easywork Enterprise';
 
-    /* Subtle type-on effect for the existing loader. No backend dependency. */
+    /* Deliberately paced brand type-on effect so the full name is clearly visible. */
     if (loaderText) {
       loaderText.textContent = '';
       loaderText.setAttribute('aria-label', loadingMessage);
@@ -14,18 +14,19 @@
         if (index < loadingMessage.length) {
           loaderText.textContent += loadingMessage.charAt(index);
           index += 1;
-          window.setTimeout(typeNext, 30);
+          window.setTimeout(typeNext, 85);
         }
       };
       typeNext();
     }
 
-    setTimeout(() => preloader.classList.add('loaded'), 200);
-    setTimeout(() => {
+    /* Keep the preloader visible long enough for the complete brand animation. */
+    window.setTimeout(() => preloader.classList.add('loaded'), 2400);
+    window.setTimeout(() => {
       preloader.style.display = 'none';
       preloader.style.visibility = 'hidden';
       preloader.style.pointerEvents = 'none';
-    }, 700);
+    }, 2900);
   }
 
   const currentPage = document.body.dataset.page || 'index.html';
