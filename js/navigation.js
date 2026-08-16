@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentPage = body.dataset.page || window.location.pathname.split('/').pop() || 'index.html';
   const sidebar = document.querySelector('.sidebar');
   const sideLinks = document.querySelectorAll('.side-nav a');
-  const BRAND_LOGO = 'assets/logo/easywork-logo.jpg';
+  const BRAND_LOGO = 'assets/logo/easywork-logo.svg';
 
   /* UI-only stylesheet. No API/backend dependencies. */
   const loadUIFixes = () => {
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadProductsUI = () => {
     if (currentPage !== 'products.html') return;
     if (document.querySelector('link[data-easywork-products-ui]')) return;
-
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = 'css/products-revamp.css';
@@ -45,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const applyBranding = () => {
-    /* Use the supplied logo everywhere the site currently shows the old logo/icon. */
     document.querySelectorAll('.sidebar .brand-mark').forEach((img) => {
       img.src = BRAND_LOGO;
       img.alt = 'Easywork Enterprise logo';
@@ -63,13 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const favicon = document.querySelector('link[rel="icon"]') || document.createElement('link');
     favicon.rel = 'icon';
-    favicon.type = 'image/jpeg';
-    favicon.href = BRAND_LOGO;
+    favicon.type = 'image/svg+xml';
+    favicon.href = 'assets/logo/easywork-icon.svg';
     if (!favicon.parentNode) document.head.appendChild(favicon);
 
     const appleIcon = document.querySelector('link[rel="apple-touch-icon"]') || document.createElement('link');
     appleIcon.rel = 'apple-touch-icon';
-    appleIcon.href = BRAND_LOGO;
+    appleIcon.href = 'assets/logo/easywork-icon.svg';
     if (!appleIcon.parentNode) document.head.appendChild(appleIcon);
   };
 
