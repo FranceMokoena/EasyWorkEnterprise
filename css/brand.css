@@ -1,37 +1,36 @@
 /* Easywork Enterprise brand treatment - UI only */
 
-:root { --easywork-logo: url('../assets/logo/easywork-logo.jpg'); }
+:root { --easywork-logo: url('../assets/logo/easywork-logo.svg'); }
 
-/* Keep the supplied logo crisp by avoiding unnecessary enlargement and giving it enough visual space. */
+/* Crisp vector logo: controlled sizing prevents blur while keeping the full wordmark visible. */
 .sidebar .brand-block {
-  min-height: 102px;
-  padding: 10px 16px;
+  min-height: 112px;
+  padding: 8px 14px;
   justify-content: flex-start;
   background: #fff;
 }
 
 .sidebar .brand-mark {
-  width: 188px;
-  height: 88px;
+  width: 184px;
+  height: 94px;
   object-fit: contain;
   object-position: center;
   border-radius: 4px;
-  flex: 0 0 188px;
+  flex: 0 0 184px;
   image-rendering: auto;
-  filter: contrast(1.04) saturate(1.02);
 }
 
 .sidebar .brand-copy { display: none; }
 
-/* Top utility bar: give the real logo enough room to remain legible instead of squeezing it into a tiny box. */
+/* Top bar: intentionally wider so the supplied wordmark reads clearly. */
 .topbar-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 150px;
-  height: 48px;
-  flex: 0 0 150px;
-  padding: 2px 4px;
+  width: 184px;
+  height: 58px;
+  flex: 0 0 184px;
+  padding: 1px 3px;
   border-radius: 4px;
   background: #fff;
   overflow: hidden;
@@ -44,10 +43,9 @@
   object-fit: contain;
   object-position: center;
   image-rendering: auto;
-  filter: contrast(1.04) saturate(1.02);
 }
 
-/* Mobile header uses the supplied logo with enough height for the wordmark to stay readable. */
+/* Mobile header uses the same crisp vector logo. */
 .mobile-brand {
   min-width: 0;
   display: inline-flex;
@@ -55,42 +53,39 @@
 }
 
 .mobile-brand img {
-  width: 140px !important;
-  height: 50px !important;
+  width: 148px !important;
+  height: 54px !important;
   object-fit: contain !important;
   object-position: center !important;
   border-radius: 4px;
   background: #fff;
   image-rendering: auto;
-  filter: contrast(1.04) saturate(1.02);
 }
 
 .mobile-brand > span { display: none !important; }
 
-/* Favicon: keep the original image untouched; browser renders it at its native tiny size. */
-
 @media (max-width: 900px) {
   .sidebar .brand-block {
-    min-height: 102px;
-    padding: 10px 18px;
+    min-height: 108px;
+    padding: 8px 16px;
   }
 
   .sidebar .brand-mark {
-    width: 188px;
-    height: 88px;
-    flex-basis: 188px;
+    width: 184px;
+    height: 92px;
+    flex-basis: 184px;
   }
 }
 
 @media (max-width: 640px) {
   .topbar-logo {
-    width: 128px;
-    flex-basis: 128px;
-    height: 42px;
+    width: 150px;
+    flex-basis: 150px;
+    height: 48px;
   }
 
   .mobile-brand img {
-    width: 132px !important;
-    height: 48px !important;
+    width: 142px !important;
+    height: 50px !important;
   }
 }
